@@ -1,0 +1,85 @@
+body{
+    background: #373B44;
+    background: linear-gradient(to right,  #4286f4, #373B44);
+}
+
+#may_tinh{
+    width: 320px;
+    height: 520px;
+    background-color: #eaedef;
+    margin: 0 auto;
+    position: relative;
+    border-radius: 5px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+#ket_qua{
+    height: 120px;
+    
+}
+
+#ket_qua_cu{
+    text-align: right;
+    height: 20px;
+    margin: 0 20px;
+    padding-top: 20px;
+    font-size: 15px;
+    color: #919191;
+}
+
+#xuat_ket_qua{
+    text-align: center;
+    height: 60px;
+    margin: 10px 20px;
+    font-size: 30px;
+}
+
+#ban_phim{
+    height: 400px;
+}
+
+.systems , .number{
+    width: 50px;
+    height: 50px;
+    margin: 15px;
+    float: left;
+    border-radius: 50%;
+    border-width: 0px;
+    font-size: 16px;
+    cursor: progress;
+}
+
+.number{
+    background-color: #eaedef;
+}
+
+.systems:active, .number:active{
+    font-size: 13px;
+    background-color:rgb(156, 204, 206) ;
+}
+
+.systems:focus, .number:focus{
+    outline: 0px;
+}
+
+button:nth-child(4){
+    font-size: 20px;
+    background: #f1a703;
+}
+
+button:nth-child(8){
+    font-size: 20px;
+    background: #4be8d3;
+}
+button:nth-child(12){
+    font-size: 20px;
+    background: #60deea;
+}
+button:nth-child(16){
+    font-size: 20px;
+    background: #5595e4;
+}
+button:nth-child(20){
+    font-size: 20px;
+    background: #fb7474;
+}
