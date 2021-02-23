@@ -46,6 +46,11 @@ for(var i=0; i < he_thong.length; i++) {
                 In_Ket_qua(ket_qua)
             }
         } 
+        else if(this.id == "+/-"){
+            let ket_qua = Xoa_Dinh_dang_chuoi(Lay_ket_qua()).toString();
+            ket_qua = "-"+ket_qua;
+            In_Ket_qua(ket_qua);
+        }
         else {
             var ket_qua = Lay_ket_qua();
             var ket_qua_cu = Lay_gia_tri_cu();
