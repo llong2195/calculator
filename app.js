@@ -76,6 +76,10 @@ for(var i=0; i < con_so.length; i++) {
     con_so[i].addEventListener('click', function() {
         var ket_qua = Xoa_Dinh_dang_chuoi(Lay_ket_qua())
         if(ket_qua != NaN) {
+            if(this.id == "."){
+                ket_qua +=this.id;
+                In_Ket_qua(ket_qua);
+            }
             ket_qua = ket_qua + this.id;
             In_Ket_qua(ket_qua)
         }
