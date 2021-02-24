@@ -41,12 +41,19 @@ for( i = 0; i < number.length; i++){
     })
 }
 
-var con_so = document.getElementsByClassName('number');
-for(var i=0; i < con_so.length; i++) {
-    con_so[i].addEventListener('click', function() {
-        if(ket_qua != NaN) {
-            if(this.id == "."){
-                In_Ket_qua(ket_qua);
+let systems = document.getElementsByClassName('systems');
+let checkFloat = false;
+for( i = 0; i < systems.length; i++){
+    systems[i].addEventListener('click', function(){
+        if(this.id == 'C'){
+            showOldResult('');
+            showResult('');
+        }
+        else if(this.id == 'DEL'){
+            let result = getResult().toString();
+            if(result){
+                result = result.substr(0, result.length-1);
+                showResult(result);
             }
         }
         else if(this.id == '+/-'){
