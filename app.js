@@ -1,72 +1,42 @@
-function Lay_gia_tri_cu(){
-    return document.getElementById("gia_tri_cu").innerText;
+function getOldResult(){
+    return document.getElementById('old_result').innerText;
 }
 
-function In_gia_tri_cu(so) {
-    document.getElementById("gia_tri_cu").innerText = so;
+function showOldResult(num){
+    document.getElementById('old_result').innerText = num;
 }
 
-
-function Lay_ket_qua() {
-    return document.getElementById("gia_tri_xuat").innerText;
+function getResult(){
+    return document.getElementById('new_result').innerText;
 }
-function In_Ket_qua(so) {
-    if(so=="") {
-        document.getElementById("gia_tri_xuat").innerText = so;
-    } else {
-        document.getElementById("gia_tri_xuat").innerText = Dinh_dang_chuoi(so);
+
+function showResult(num){
+    if(num == ""){
+        document.getElementById('new_result').innerText = "";
     }
- 
+    else
+        document.getElementById('new_result').innerText = Number(num);
 }
-function Dinh_dang_chuoi(so) {
-    if(so == "-") {
-        return "";
-    }
-    var n = Number(so);
-    var gia_tri = n.toLocaleString("en");
-    return gia_tri;
+function convertToString(num){
+    let n = Number(num);
+    return n.toLocaleString('en');
+}
+function convertToNumber(num){
+    return Number(num.replace(/,/g,''));
 }
 
-function Xoa_Dinh_dang_chuoi(so) {
-    return Number(so.replace(/,/g, ''))
-} 
+let number = document.getElementsByClassName('number');
 
-
-var he_thong = document.getElementsByClassName('systems');
-for(var i=0; i < he_thong.length; i++) {
-    he_thong[i].addEventListener('click', function() {
-        if(this.id == "C") {
-            In_Ket_qua("");
-            In_gia_tri_cu("");
-        } 
-        else if(this.id == "DEL") {
-            let ket_qua = Xoa_Dinh_dang_chuoi(Lay_ket_qua()).toString();
-            if(ket_qua) {
-                ket_qua = ket_qua.substr(0, ket_qua.length -1)
-                In_Ket_qua(ket_qua)
+for( i = 0; i < number.length; i++){
+    number[i].addEventListener('click', function(){
+        let result = getResult().toString();
+        if(result.length == 10) result = NaN;
+        if(result != NaN){
+            if(checkFloat == true){
+                checkFloat = false;
             }
-        } 
-        else if(this.id == "+/-"){
-            let ket_qua = Xoa_Dinh_dang_chuoi(Lay_ket_qua()).toString();
-            ket_qua = "-"+ket_qua;
-            In_Ket_qua(ket_qua);
-        }
-        else {
-            var ket_qua = Lay_ket_qua();
-            var ket_qua_cu = Lay_gia_tri_cu();
-            if(ket_qua != "") {
-                ket_qua = Xoa_Dinh_dang_chuoi(ket_qua);
-                ket_qua_cu =ket_qua_cu + ket_qua;
-                if(this.id == "=") {
-                    var ket_qua_cuoi = eval(ket_qua_cu);
-                    In_Ket_qua(ket_qua_cuoi)
-                    In_gia_tri_cu("")
-                } else {
-                    ket_qua_cu = ket_qua_cu + this.id;
-                    In_gia_tri_cu(ket_qua_cu)
-                    In_Ket_qua("")
-                }
-            }
+            result += this.id;
+            showResult(result);
         }
     })
 }
@@ -74,14 +44,44 @@ for(var i=0; i < he_thong.length; i++) {
 var con_so = document.getElementsByClassName('number');
 for(var i=0; i < con_so.length; i++) {
     con_so[i].addEventListener('click', function() {
-        var ket_qua = Xoa_Dinh_dang_chuoi(Lay_ket_qua())
         if(ket_qua != NaN) {
             if(this.id == "."){
-                ket_qua +=this.id;
                 In_Ket_qua(ket_qua);
             }
-            ket_qua = ket_qua + this.id;
-            In_Ket_qua(ket_qua)
+        }
+        else if(this.id == '+/-'){
+            let result = Number(getResult());
+            if(result){
+                result = result*(-1);
+                result = result.toString();
+                showResult(result);
+            }
+        }
+        else if(this.id == '.'){
+            let result = getResult().toString();
+            if(result.indexOf('.')==-1){
+                checkFloat = true;
+                result+='.';
+                document.getElementById('new_result').innerText = result;
+            } 
+        }
+        else{
+            let old_result = getOldResult()
+            let new_result = getResult();
+            if(new_result!=''){
+                old_result += new_result;
+                if(this.id == '='){
+                    let result = eval(old_result);
+                    showOldResult('');
+                    showResult(result);
+                }
+                else{
+                    old_result += this.id;
+                    showResult('');
+                    showOldResult(old_result);
+                }
+            }
+
         }
     })
 }
